@@ -7,13 +7,13 @@ exports.__esModule = true;
  * @param {string} file 
  * @returns {undefined} nothing
  */
-exports.Client = function Client(file) {
-  const worker = new Worker(file);
-  const repo = {};
-  worker.addEventListener('message', event => {
-    const response = JSON.parse(event.data);
-    repo[response.id].callback(response.data);
-    delete repo[response.id];
+exports.Client = function Client(filename) {
+  var worker = new Worker(filename);
+  var repository = {};
+  worker.addEventListener('message', function (event) {
+    var response = JSON.parse(event.data);
+    repository[response.id].callback(response.data);
+    delete repository[response.id];
   });
   /**
    * emit to OrkerService
@@ -21,14 +21,14 @@ exports.Client = function Client(file) {
    * @param {any} data
    * @param {fucntion} callback
    */
-  this.emit = (name, data, callback) => {
-    const id = Math.random().toString().substr(2) + (new Date().getTime());
-    repo[id] = {
+  this.emit = function (name, data, callback) {
+    var id = Math.random().toString().substr(2) + (new Date().getTime());
+    repository[id] = {
       id,
       name,
       data,
       callback,
     }
-    worker.postMessage(JSON.stringify(repo[id]));
+    worker.postMessage(JSON.stringify(repository[id]));
   }
 };

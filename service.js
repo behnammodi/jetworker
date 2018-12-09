@@ -7,28 +7,28 @@ exports.__esModule = true;
  * @returns {undefined} nothing
  */
 exports.Service = function Service() {
-  const repo = {};
-  const funcs = {};
+  var repository = {};
+  var funcs = {};
   /**
    * initial listener
    * @param {string} name
    * @param {function} callback
    */
-  this.on = (name, callback) => {
+  this.on = function (name, callback) {
     funcs[name] = callback;
-    self.onmessage = event => {
-      const req = JSON.parse(event.data);
-      repo[req.id] = req;      
-      funcs[req.name]({
-        res: data => {
+    self.onmessage = function (event) {
+      var req = JSON.parse(event.data);
+      repository[req.id] = req;
+      funcs[req.name](
+        function (data) {
           self.postMessage(JSON.stringify({
             id: req.id,
             data,
           }))
-          delete repo[req.id];
+          delete repository[req.id];
         },
-        data: req.data,
-      })
-    }
+        req.data,
+      )
+    };
   }
 };
