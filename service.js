@@ -20,6 +20,7 @@ exports.default = function Service() {
       var req = JSON.parse(event.data);
       repository[req.id] = req;
       funcs[req.name](
+        req.data,
         function (data) {
           self.postMessage(JSON.stringify({
             id: req.id,
@@ -27,7 +28,6 @@ exports.default = function Service() {
           }))
           delete repository[req.id];
         },
-        req.data,
       )
     };
   }
