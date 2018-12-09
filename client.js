@@ -3,9 +3,9 @@
 exports.__esModule = true;
 
 /**
- * Initial WebWorker with file name 
- * @param {string} file 
- * @returns {undefined} nothing
+ * initial Client with worker filename 
+ * @param {string} filename 
+ * @returns {instance} instance Client
  */
 exports.default = function Client(filename) {
   function generateId() {
@@ -20,10 +20,11 @@ exports.default = function Client(filename) {
     delete repository[id];
   });
   /**
-   * emit to OrkerService
+   * emit to client
    * @param {string} name
    * @param {any} data
    * @param {fucntion} callback
+   * @returns {undefined} nothing
    */
   this.emit = function (name, data, callback) {
     var id = generateId();

@@ -3,18 +3,19 @@
 exports.__esModule = true;
 
 /**
- * Service in WebWorker 
- * @returns {undefined} nothing
+ * initial Service in WebWorker
+ * @returns {instance} instance Service
  */
 exports.default = function Service() {
   var subscribes = {};
   /**
    * initial listener
    * @param {string} name
-   * @param {function} callback
+   * @param {function} process
+   * @returns {undefined} nothing
    */
-  this.on = function (name, callback) {
-    subscribes[name] = callback;
+  this.on = function (name, process) {
+    subscribes[name] = process;
     self.onmessage = function (event) {
       var request = JSON.parse(event.data);
       subscribes[request.name](
