@@ -8,12 +8,16 @@ exports.__esModule = true;
  * @returns {undefined} nothing
  */
 exports.default = function Client(filename) {
+  function generateId() {
+    return Math.random().toString().substr(2) + (new Date().getTime());
+  }
   var worker = new Worker(filename);
   var repository = {};
   worker.addEventListener('message', function (event) {
     var response = JSON.parse(event.data);
-    repository[response.id].callback(response.data);
-    delete repository[response.id];
+    var id = response.id;
+    repository[id] && repository[id].callback(response.data);
+    delete repository[id];
   });
   /**
    * emit to OrkerService
@@ -22,12 +26,12 @@ exports.default = function Client(filename) {
    * @param {fucntion} callback
    */
   this.emit = function (name, data, callback) {
-    var id = Math.random().toString().substr(2) + (new Date().getTime());
+    var id = generateId();
     repository[id] = {
-      id,
-      name,
-      data,
-      callback,
+      id: id,
+      name: name,
+      data: data,
+      callback: callback,
     }
     worker.postMessage(JSON.stringify(repository[id]));
   }
