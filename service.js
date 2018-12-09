@@ -6,7 +6,7 @@ exports.__esModule = true;
  * Service in WebWorker 
  * @returns {undefined} nothing
  */
-exports.Service = function Service() {
+exports.default = function Service() {
   var repository = {};
   var funcs = {};
   /**

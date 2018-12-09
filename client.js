@@ -7,7 +7,7 @@ exports.__esModule = true;
  * @param {string} file 
  * @returns {undefined} nothing
  */
-exports.Client = function Client(filename) {
+exports.default = function Client(filename) {
   var worker = new Worker(filename);
   var repository = {};
   worker.addEventListener('message', function (event) {
