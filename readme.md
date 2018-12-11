@@ -19,21 +19,21 @@ jetwork has two section ```Client``` and ```Service```
 
 ## import Client
 ```javascript
-const Client = require('jetemit/client');
+const Client = require('jetworker/client');
 //or
-import Client from 'jetemit/client';
+import Client from 'jetworker/client';
 ```
 
 ## import Service
 ```javascript
-const Service = require('jetemit/service');
+const Service = require('jetworker/service');
 //or
-import Service from 'jetemit/service';
+import Service from 'jetworker/service';
 ```
 
 ## use web
 ```javascript
-import Client from 'jetemit/client';
+import Client from 'jetworker/client';
 
 const client = new Client('./worker.js');
 
@@ -53,7 +53,7 @@ client.emit(
 
 ## in worker.js
 ```javascript
-import Service from 'jetemit/service';
+import Service from 'jetworker/service';
 
 const service = new Service();
 
