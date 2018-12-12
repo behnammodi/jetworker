@@ -6,13 +6,13 @@
 
 jetworker easy way for community with WebWorker
 
-## Browser compatibility desktop
+### Browser compatibility desktop
 
 |Chrome|Firefox|Internet Explorer|Opera|Safari|
 |------|-------|-----------------|-----|------|
 |4     |3.5    |10               |10.6 |4     |
 
-## Browser compatibility mobile
+### Browser compatibility mobile
 
 |Android|Chrome|Firefox|Internet Explorer|Opera|Safari
 |-------|------|-------|-----------------|-----|-----|
