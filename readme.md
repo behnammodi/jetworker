@@ -4,6 +4,18 @@
 
 [![install size](https://packagephobia.now.sh/badge?p=jetworker)](https://packagephobia.now.sh/result?p=jetworker) [![dependencies](https://david-dm.org/uxitten/jetworker.svg)](https://david-dm.org/uxitten/jetworker.svg)
 
+<a href="https://www.npmjs.com/package/jetworker">
+  <img src="https://img.shields.io/npm/v/jetworker.svg" alt="Version">
+</a>
+
+<a href="https://www.npmjs.com/package/jetworker">
+  <img src="https://img.shields.io/npm/l/jetworker.svg" alt="License">
+</a>
+
+<a href="https://www.npmjs.com/package/jetworker">
+  <img src="https://img.shields.io/npm/dm/jetworker.svg" alt="Downloads">
+</a>
+
 jetworker easy way for community with WebWorker
 
 ### Browser compatibility desktop
