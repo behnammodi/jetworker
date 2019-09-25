@@ -1,11 +1,11 @@
 import Service from "./modules/service";
 
-const service = new Service();
+const { on } = new Service();
 
-service.on("ADD", (req, res) => {
-  res(req.a + req.b);
+on("ADD", ({ a, b }, res) => {
+  res(a + b);
 });
 
-service.on("MINUS", (req, res) => {
-  res(req.a - req.b);
+on("MINUS", ({ a, b }, res) => {
+  res(a - b);
 });

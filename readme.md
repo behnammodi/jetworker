@@ -20,46 +20,50 @@ jetworker easy way for community with WebWorker
 
 ### Browser compatibility desktop
 
-|Chrome|Firefox|Internet Explorer|Opera|Safari|
-|------|-------|-----------------|-----|------|
-|4     |3.5    |10               |10.6 |4     |
+| Chrome | Firefox | Internet Explorer | Opera | Safari |
+| ------ | ------- | ----------------- | ----- | ------ |
+| 4      | 3.5     | 10                | 10.6  | 4      |
 
 ### Browser compatibility mobile
 
-|Android|Chrome|Firefox|Internet Explorer|Opera|Safari
-|-------|------|-------|-----------------|-----|-----|
-|4.4    |4     |3.5    |10               |11.5 |5.1  |
+| Android | Chrome | Firefox | Internet Explorer | Opera | Safari |
+| ------- | ------ | ------- | ----------------- | ----- | ------ |
+| 4.4     | 4      | 3.5     | 10                | 11.5  | 5.1    |
 
 ## install
+
 ```npm
 npm install jetworker --save
 ```
 
-jetwork has two section ```Client``` and ```Service```
+jetwork has two section `Client` and `Service`
 
-```Client``` for use in main thread website or webapp
+`Client` for use in main thread website or webapp
 
-```Service``` for use in WebWorker file
+`Service` for use in WebWorker file
 
 ## import Client
+
 ```javascript
-const Client = require('jetworker/client');
+const Client = require("jetworker/client");
 //or
-import Client from 'jetworker/client';
+import Client from "jetworker/client";
 ```
 
 ## import Service
+
 ```javascript
-const Service = require('jetworker/service');
+const Service = require("jetworker/service");
 //or
-import Service from 'jetworker/service';
+import Service from "jetworker/service";
 ```
 
 ## use web
-```javascript
-import Client from 'jetworker/client';
 
-const client = new Client('./worker.js');
+```javascript
+import Client from "jetworker/client";
+
+const client = new Client("./worker.js");
 
 /**
  * client.emit(name, data, callback)
@@ -68,26 +72,24 @@ const client = new Client('./worker.js');
  * @param {function} callback for recive response from worker
  * @returns {undefined} nothing
  */
-client.emit(
-  'multiple',   
-  { a: 2, b: 3 }, 
-  data => console.log(data),
-);
+client.emit("multiple", { a: 2, b: 3 }, result => console.log(result));
 ```
 
 ## in worker.js
-```javascript
-import Service from 'jetworker/service';
 
-const service = new Service();
+```javascript
+import Service from "jetworker/service";
+
+const { on } = new Service();
+
+function multiple(data, response) {
+  response(data.a * data.b);
+}
 
 /**
  * service.on(name, process)
  * @param {string} name function name for call in client
- * @param {function} process function, req is data recived from client and res is function for send result to client 
+ * @param {function} process function, req is data recived from client and res is function for send result to client
  */
-service.on(  
-  'multiple',   
-  (req, res) => res(req.a * req.b) 
-);
+on("multiple", multiple);
 ```
