@@ -11,21 +11,20 @@ exports.default = function Service() {
 
   self.onmessage = function (event) {
     var request = JSON.parse(event.data);
-    var req = request.data;
 
-    var res = function res(data) {
+    var response = function response(data) {
       return self.postMessage({
         id: request.id,
         data: data
       });
     };
     /**
-     * on('name',(req,res)=>{})
+     * on('name',(data, response)=>{})
      */
 
 
     var process = subscribes[request.name];
-    process(req, res);
+    process(request.data, response);
   };
   /**
    * initial listener

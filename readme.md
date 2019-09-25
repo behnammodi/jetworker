@@ -63,16 +63,16 @@ import Service from "jetworker/service";
 ```javascript
 import Client from "jetworker/client";
 
-const client = new Client("./worker.js");
+const { post } = new Client("./worker.js");
 
 /**
- * client.emit(name, data, callback)
+ * post(name, data, callback)
  * @param {string} name is function name in worker
  * @param {any} data send to worker
  * @param {function} callback for recive response from worker
  * @returns {undefined} nothing
  */
-client.emit("multiple", { a: 2, b: 3 }, result => console.log(result));
+post("multiple", { a: 2, b: 3 }, result => console.log(result));
 ```
 
 ## in worker.js
@@ -89,7 +89,16 @@ function multiple(data, response) {
 /**
  * service.on(name, process)
  * @param {string} name function name for call in client
- * @param {function} process function, req is data recived from client and res is function for send result to client
+ * @param {function} process function, data is data recived from client and post is function for send result to client
  */
 on("multiple", multiple);
+```
+
+## Migration from v1 to v2
+
+You should use `post` instead `emit` inside client
+
+```diff
+- const { emit } = new Client("./worker.js");
++ const { post } = new Client("./worker.js");
 ```

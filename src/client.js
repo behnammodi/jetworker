@@ -22,34 +22,34 @@ exports.default = function Client(filename) {
     const id = response.id;
     repository[id] && repository[id].callback(response.data);
     /**
-     * every emit is dedicated. inside emit we generate id
-     * for every emit anf after recive message from worker
-     * we delete id, becuase every emit just recive message
+     * every post is dedicated. inside post we generate id
+     * for every post anf after recive message from worker
+     * we delete id, becuase every post just recive message
      * from worker just once
      */
     delete repository[id];
   });
   /**
-   * emit to client
+   * post to service
    * @param {string} name
    * @param {any} data
    * @param {fucntion} callback
    * @returns {undefined} nothing
    */
-  this.emit = (name, data, callback) => {
+  this.post = (name, data, callback) => {
     /**
      
      */
     const id = generateId();
     repository[id] = {
       /**
-       * is i unige every emit need id when recive message
-       * from worker we can find emiter to give data
+       * is i unige every post need id when recive message
+       * from worker we can find emitter to give data
        */
       id: id,
       /**
        * we inited function as listener on worker every
-       * emiter name determine name for worker run correct
+       * emitter name determine name for worker run correct
        * listener
        */
       name: name,
