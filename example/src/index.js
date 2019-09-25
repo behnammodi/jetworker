@@ -2,6 +2,8 @@ import Client from "./modules/client";
 
 const { emit } = new Client("./worker.js");
 
+console.log("start");
+
 console.time("time1");
 emit("ADD", { a: 1, b: 2 }, data => {
   console.timeEnd("time1");

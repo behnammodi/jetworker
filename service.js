@@ -11,12 +11,21 @@ exports.default = function Service() {
 
   self.onmessage = function (event) {
     var request = JSON.parse(event.data);
-    subscribes[request.name](request.data, function (data) {
-      self.postMessage(JSON.stringify({
+    var req = request.data;
+
+    var res = function res(data) {
+      return self.postMessage({
         id: request.id,
         data: data
-      }));
-    });
+      });
+    };
+    /**
+     * on('name',(req,res)=>{})
+     */
+
+
+    var process = subscribes[request.name];
+    process(req, res);
   };
   /**
    * initial listener

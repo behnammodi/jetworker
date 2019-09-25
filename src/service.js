@@ -10,14 +10,17 @@ exports.default = function Service() {
   const subscribes = {};
   self.onmessage = event => {
     const request = JSON.parse(event.data);
-    subscribes[request.name](request.data, data => {
-      self.postMessage(
-        JSON.stringify({
-          id: request.id,
-          data: data
-        })
-      );
-    });
+    const req = request.data;
+    const res = data =>
+      self.postMessage({
+        id: request.id,
+        data: data
+      });
+    /**
+     * on('name',(req,res)=>{})
+     */
+    const process = subscribes[request.name];
+    process(req, res);
   };
   /**
    * initial listener

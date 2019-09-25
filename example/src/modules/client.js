@@ -15,7 +15,7 @@ exports.default = function Client(filename) {
   var worker = new Worker(filename);
   var repository = {};
   worker.addEventListener("message", function (event) {
-    var response = JSON.parse(event.data);
+    var response = event.data;
     var id = response.id;
     repository[id] && repository[id].callback(response.data);
     /**
