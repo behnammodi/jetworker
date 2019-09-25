@@ -1,7 +1,7 @@
 {
   "name": "jetworker",
-  "version": "1.0.9",
-  "description": "jetworker easy way for community with WebWorker",  
+  "version": "1.1.0",
+  "description": "jetworker easy way for community with WebWorker",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uxitten/jetworker.git"
@@ -12,5 +12,19 @@
   "bugs": {
     "url": "https://github.com/uxitten/jetworker/issues"
   },
-  "homepage": "https://github.com/uxitten/jetworker#readme"
+  "homepage": "https://github.com/uxitten/jetworker#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:client && npm run build:service && npm run build:copy-to-example",
+    "build:client": "babel ./src/client.js --out-dir ./",
+    "build:service": "babel ./src/service.js --out-dir ./",
+    "build:minify": "node ./scripts/minify.js",
+    "build:copy-to-example": "cp ./client.js ./example/src/modules/client.js && cp ./service.js ./example/src/modules/service.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "babel-minify": "^0.5.1"
+  }
 }
