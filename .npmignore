@@ -2,3 +2,13 @@
 example
 
 scripts
+
+src
+
+.gitignore
+
+babel.config.js
+
+LICENSE
+
+readme.md

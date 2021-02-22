@@ -4,15 +4,15 @@
   "description": "jetworker easy way for community with WebWorker",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uxitten/jetworker.git"
+    "url": "git+https://github.com/behnammodi/jetworker.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Behnam Mohammadi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/uxitten/jetworker/issues"
+    "url": "https://github.com/behnammodi/jetworker/issues"
   },
-  "homepage": "https://github.com/uxitten/jetworker#readme",
+  "homepage": "https://github.com/behnammodi/jetworker#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:client && npm run build:service && npm run build:copy-to-example",
@@ -22,9 +22,9 @@
     "build:copy-to-example": "cp ./client.js ./example/src/modules/client.js && cp ./service.js ./example/src/modules/service.js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "babel-minify": "^0.5.1"
+    "@babel/cli": "^7.12.17",
+    "@babel/core": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
+    "babel-minify": "^0.1.12"
   }
 }

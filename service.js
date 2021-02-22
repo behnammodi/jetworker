@@ -7,23 +7,21 @@ exports.__esModule = true;
  */
 
 exports.default = function Service() {
-  var subscribes = {};
+  const subscribes = {};
 
-  self.onmessage = function (event) {
-    var request = JSON.parse(event.data);
+  self.onmessage = event => {
+    const request = JSON.parse(event.data);
 
-    var response = function response(data) {
-      return self.postMessage({
-        id: request.id,
-        data: data
-      });
-    };
+    const response = data => self.postMessage({
+      id: request.id,
+      data: data
+    });
     /**
      * on('name',(data, response)=>{})
      */
 
 
-    var process = subscribes[request.name];
+    const process = subscribes[request.name];
     process(request.data, response);
   };
   /**
@@ -34,7 +32,7 @@ exports.default = function Service() {
    */
 
 
-  this.on = function (name, process) {
+  this.on = (name, process) => {
     subscribes[name] = process;
   };
 };

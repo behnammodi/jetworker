@@ -12,11 +12,11 @@ exports.default = function Client(filename) {
     return Math.random().toString().substr(2) + new Date().getTime();
   }
 
-  var worker = new Worker(filename);
-  var repository = {};
-  worker.addEventListener("message", function (event) {
-    var response = event.data;
-    var id = response.id;
+  const worker = new Worker(filename);
+  const repository = {};
+  worker.addEventListener("message", event => {
+    const response = event.data;
+    const id = response.id;
     repository[id] && repository[id].callback(response.data);
     /**
      * every post is dedicated. inside post we generate id
@@ -35,11 +35,11 @@ exports.default = function Client(filename) {
    * @returns {undefined} nothing
    */
 
-  this.post = function (name, data, callback) {
+  this.post = (name, data, callback) => {
     /**
      
      */
-    var id = generateId();
+    const id = generateId();
     repository[id] = {
       /**
        * is i unige every post need id when recive message
